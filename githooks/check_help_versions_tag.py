@@ -18,10 +18,10 @@ def check_help_version_json(path:str, local_tags_set:set[float], url_template:st
         return f"Last tag added to version switcher."
     
     elif float(versions[-1]["version"]) == latest_tag and versions[-1]["url"] == "/":
-        print(f"In the switcher using latest tag.")
+        return f"In the switcher using latest tag."
     elif float(versions[-1]["version"]) > latest_tag and versions[-1]["url"] == "/":
-        print(f"Error! The last tag in the version switcher is {versions[-1]["version"]} but latest local tag is {latest_tag}.")    
+        return f"Error! The last tag in the version switcher is {versions[-1]['version']} but latest local tag is {latest_tag}."  
 
-    print(versions)             
+                
         
 

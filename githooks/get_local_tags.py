@@ -1,6 +1,9 @@
 import subprocess
 
 def get_local_git_tags():
+    """Get local git tags
+    Function get the list of git tags.
+    """
     try:
         # Run the git tag command and capture the output
         result = subprocess.run(["git", "tag"], capture_output=True, text=True, check=True)
@@ -9,7 +12,9 @@ def get_local_git_tags():
         tags = result.stdout.strip().split('\n')
         tags = {float(tag) for tag in tags}
         
-        # Return the list of tags
+        if len(tags) == 0:
+            raise Exception("You are dont have local tags")
+        
         return tags
     except subprocess.CalledProcessError as e:
         # Handle errors if the git command fails
