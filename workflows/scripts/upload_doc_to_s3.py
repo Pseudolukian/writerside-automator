@@ -35,7 +35,11 @@ class S3_doc_upload:
                 aws_secret_access_key=self.access_key,
                 region_name=self.region_name,
             )
-            s3 = session.client("s3", endpoint_url=self.endpoint_url)
+
+            if not self.endpoint_url:
+                s3 = session.client("s3")
+            else:
+                s3 = session.client("s3", endpoint_url=self.endpoint_url)
             
             # Попытка вызова метода клиента, чтобы убедиться, что сессия работает
             s3.list_buckets()
